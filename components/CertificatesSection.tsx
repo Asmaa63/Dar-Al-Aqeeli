@@ -201,11 +201,11 @@ export default function CertificatesSection() {
         </div>
       </div>
 
-      <style jsx>{`
+      {/* <style jsx>{`
         .delay-1000 {
           animation-delay: 1s;
         }
-      `}</style>
+      `}</style> */}
     </section>
   );
 }

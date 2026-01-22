@@ -172,7 +172,7 @@ export default function ProjectsSection() {
                 <div className="relative h-96 overflow-hidden bg-black">
                   <img
                     src={project.image}
-                    alt={t('projects', `items.${project.key}`)}
+                    alt={t('projects', `items.${project.key}`) || ''}
                     className="w-full h-full object-cover transform group-hover:scale-125 transition-transform duration-1000 opacity-80 group-hover:opacity-90"
                   />
                   {/* Red overlay gradient */}
@@ -195,11 +195,11 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Hover Border Effect */}
-                <div className="absolute inset-0 border-3 border-transparent group-hover:border-red-600 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-red-600 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
                 
                 {/* Corner accents */}
                 <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-white/0 group-hover:border-white/50 transition-all duration-500 rounded-tl-2xl"></div>
-                <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-white/0 group-hover:border-white/50 transition-all duration-500 rounded-br-2xl"></div>
+                <div className="absolute bottom-0 righF<style jsx>t-0 w-16 h-16 border-b-4 border-r-4 border-white/0 group-hover:border-white/50 transition-all duration-500 rounded-br-2xl"></div>
               </div>
             ))}
           </div>
@@ -241,11 +241,11 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      <style jsx>{`
+      {/* <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
-      `}</style>
+      `}</style> */}
     </section>
   );
 }
