@@ -1,187 +1,125 @@
 // components/ContactSection.tsx
 'use client';
 
-import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Phone, MapPin, Send, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function ContactSection() {
-  const { language, t, dir } = useLanguage();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
+  const { t, dir } = useLanguage();
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
-      alert(language === 'ar' ? 'الرجاء ملء جميع الحقول' : 'Please fill all fields');
-      return;
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
-    alert(language === 'ar' ? 'شكراً لتواصلك معنا! سنرد عليك قريباً' : 'Thank you for contacting us! We will reply soon');
-    setFormData({ name: '', email: '', phone: '', message: '' });
-  };
+
+    return () => observer.disconnect();
+  }, []);
 
   const contactInfo = [
     {
       icon: Phone,
-      title: language === 'ar' ? 'اتصل بنا' : 'Call Us',
-      info: '+966 50 123 4567',
-      color: 'from-green-500 to-emerald-500',
+      title: t('contact', 'phone'),
+      value: '+966 12 6145565',
+      link: 'tel:+966126145565',
     },
     {
       icon: Mail,
-      title: language === 'ar' ? 'راسلنا' : 'Email Us',
-      info: 'info@daraqeeli.com',
-      color: 'from-blue-500 to-cyan-500',
+      title: t('contact', 'email'),
+      value: 'Crew@akeeligroup.com',
+      link: 'mailto:Crew@akeeligroup.com',
     },
     {
       icon: MapPin,
       title: t('contact', 'address'),
-      info: t('contact', 'addressText'),
-      color: 'from-amber-500 to-orange-500',
+      value: t('contact', 'addressText'),
+      link: null,
     },
   ];
 
-  const socialLinks = [
-    { icon: Facebook, url: '#', name: 'Facebook' },
-    { icon: Instagram, url: '#', name: 'Instagram' },
-    { icon: Twitter, url: '#', name: 'Twitter' },
-    { icon: Linkedin, url: '#', name: 'LinkedIn' },
-  ];
-
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-white to-gray-50" dir={dir}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    <section
+      id="contact"
+      ref={sectionRef}
+      dir={dir}
+      className="py-20 bg-gradient-to-br from-black via-gray-900 to-red-950 relative overflow-hidden"
+    >
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-red-600/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-800/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Title */}
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {t('contact', 'title')}
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-amber-700 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600">
+          <div className="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             {t('contact', 'subtitle')}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-            <div className="space-y-6">
-              <div>
-                <label className="block text-gray-700 font-semibold mb-2">
-                  {t('contact', 'name')}
-                </label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
-                  placeholder={language === 'ar' ? 'اسمك الكريم' : 'Your Name'}
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-700 font-semibold mb-2">
-                  {t('contact', 'email')}
-                </label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
-                  placeholder={language === 'ar' ? 'بريدك الإلكتروني' : 'your@email.com'}
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-700 font-semibold mb-2">
-                  {t('contact', 'phone')}
-                </label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
-                  placeholder="+966 50 123 4567"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-700 font-semibold mb-2">
-                  {t('contact', 'message')}
-                </label>
-                <textarea
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 resize-none"
-                  placeholder={language === 'ar' ? 'كيف يمكننا مساعدتك؟' : 'How can we help you?'}
-                ></textarea>
-              </div>
-
-              <button
-                onClick={handleSubmit}
-                className="w-full bg-gradient-to-r from-amber-500 to-amber-700 text-white px-8 py-4 rounded-xl font-bold hover:from-amber-600 hover:to-amber-800 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-3"
+        {/* Contact Cards */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {contactInfo.map((info, index) => {
+            const Icon = info.icon;
+            return (
+              <div
+                key={index}
+                className={`group bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-red-600/50 transition-all duration-500 hover:-translate-y-2 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <span className={language === 'ar' ? 'ml-3' : ''}>{t('contact', 'send')}</span>
-                <Send className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-8">
-            {/* Contact Cards */}
-            <div className="space-y-6">
-              {contactInfo.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-14 h-14 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center flex-shrink-0 ${language === 'ar' ? 'ml-4' : ''}`}>
-                      <item.icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900 mb-1">{item.title}</h3>
-                      <p className="text-gray-600">{item.info}</p>
-                    </div>
+                <div className="flex flex-col items-center text-center">
+                  <div className="bg-red-600 p-4 rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-8 h-8 text-white" />
                   </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {info.title}
+                  </h3>
+                  {info.link ? (
+                    <a
+                      href={info.link}
+                      className="text-gray-300 hover:text-red-600 transition-colors duration-300"
+                    >
+                      {info.value}
+                    </a>
+                  ) : (
+                    <p className="text-gray-300">{info.value}</p>
+                  )}
                 </div>
-              ))}
-            </div>
-
-            {/* Social Media */}
-            <div className="bg-gradient-to-br from-amber-500 to-amber-700 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-6">{t('contact', 'followUs')}</h3>
-              <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    className={`w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/30 transition-all duration-300 transform hover:scale-110 ${language === 'ar' ? 'ml-4' : ''}`}
-                    aria-label={social.name}
-                  >
-                    <social.icon className="w-6 h-6" />
-                  </a>
-                ))}
               </div>
+            );
+          })}
+        </div>
 
-              <div className="mt-8 pt-8 border-t border-white/20">
-                <p className="text-sm opacity-90">
-                  {language === 'ar' 
-                    ? 'ساعات العمل: الأحد - الخميس، 9 صباحاً - 6 مساءً'
-                    : 'Working Hours: Sunday - Thursday, 9 AM - 6 PM'}
-                </p>
-              </div>
-            </div>
-
-            {/* Map Placeholder */}
-            <div className="bg-gray-200 rounded-2xl h-64 flex items-center justify-center overflow-hidden relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-100 to-amber-200"></div>
-              <div className="relative text-6xl">🗺️</div>
+        {/* Map or Additional Info */}
+        <div className={`mt-16 max-w-4xl mx-auto transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="aspect-video bg-gray-800 rounded-xl flex items-center justify-center overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235014.0859969147!2d39.034919!3d21.485811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d01fb1137e59%3A0xe059579737b118db!2sJeddah%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-xl"
+              ></iframe>
             </div>
           </div>
         </div>

@@ -17,94 +17,168 @@ const translations: Record<Language, Translations> = {
       home: 'الرئيسية',
       about: 'من نحن',
       services: 'خدماتنا',
-      projects: 'مشاريعنا',
-      gallery: 'معرض الصور',
+      projects: 'أعمالنا',
+      certificates: 'الشهادات',
+      partners: 'شركاء النجاح',
       contact: 'تواصل معنا',
     },
     hero: {
       company: 'دار العقيلي',
+      crew: 'Crew',
       subtitle: 'للمعارض والفعاليات والمهرجانات',
-      description: 'نصنع تجارب استثنائية لا تُنسى من خلال تنظيم المعارض والفعاليات والمهرجانات بأعلى معايير الجودة والاحترافية',
-      cta: 'اكتشف خدماتنا',
+      description: 'شركة Crew إحدى مجموعات شركة دار العقيلي. وهي شركة سعودية رائدة في مجال إدارة وتنظيم وتجهيز المعارض والفعاليات في المملكة العربية السعودية',
+      cta: 'اكتشف المزيد',
       cta2: 'تواصل معنا',
       stats: {
         events: '500+',
         eventsLabel: 'فعالية منظمة',
-        clients: '200+',
-        clientsLabel: 'عميل راضٍ',
-        years: '15+',
-        yearsLabel: 'سنة خبرة',
-        awards: '30+',
-        awardsLabel: 'جائزة وتقدير',
+        clients: '300+',
+        clientsLabel: 'عميل راضي',
+        years: '4+',
+        yearsLabel: 'سنوات خبرة',
       }
     },
     about: {
       title: 'من نحن',
-      subtitle: 'رواد في صناعة الفعاليات',
-      description: 'دار العقيلي هي شركة رائدة في مجال تنظيم المعارض والفعاليات والمهرجانات في المنطقة. نمتلك خبرة تمتد لأكثر من 15 عامًا في صناعة الفعاليات، حيث نجمع بين الإبداع والاحترافية لتقديم تجارب فريدة لا تُنسى.',
-      mission: 'رسالتنا',
-      missionText: 'نسعى لتقديم أفضل الخدمات في تنظيم الفعاليات والمعارض، مع الالتزام بأعلى معايير الجودة والابتكار',
+      subtitle: 'شركة رائدة في صناعة الفعاليات',
+      description: 'شركة Crew إحدى مجموعات شركة دار العقيلي. وهي شركة سعودية رائدة في مجال إدارة وتنظيم وتجهيز المعارض والفعاليات في المملكة العربية السعودية.',
+      description2: 'تقدم مختلف خدمات إدارة الفعاليات بشتى أنواعها من خلال الكوادر والخبرات ذات الكفاءة العالية لتحقيق مستويات جودة عالمية.',
+      founded: 'تأسست عام 2020م بقيادة فريق عمل من شباب وشابات طموحين لديهم الخبرات الكافية لتنظيم وإدارة الفعاليات الترفيهية والإبداعية المؤثرة في تحقيق أهداف العملاء.',
       vision: 'رؤيتنا',
-      visionText: 'أن نكون الخيار الأول والأمثل لتنظيم الفعاليات الاستثنائية في المنطقة والعالم العربي',
-      values: 'قيمنا',
-      valuesText: 'الاحترافية، الإبداع، الالتزام، والتميز في كل ما نقدمه',
+      visionText: 'تقديم مجموعة من الحلول والخدمات الخاصة بإدارة وإنتاج الفعاليات لعملائنا بطريقة محترفة ومبتكرة تترك أثراً يتحدث عنه الآخرون لسنوات قادمة.',
+      values: 'القيم',
+      valuesText: 'نسعى للتعامل مع عملائنا بالاحترام ودمجه بالصدق وأخلاقيات الأعمال التجارية في جميع جوانب أداء الأعمال لدينا.',
     },
     services: {
       title: 'خدماتنا',
-      subtitle: 'نقدم مجموعة متكاملة من الخدمات',
-      exhibitions: {
-        title: 'تنظيم المعارض',
-        description: 'نصمم وننظم معارض احترافية بكافة أنواعها التجارية والفنية والصناعية بأعلى المعايير العالمية'
-      },
-      events: {
-        title: 'إدارة الفعاليات',
-        description: 'من المؤتمرات الكبرى إلى الفعاليات الخاصة، نضمن تنفيذ فعالياتك بكل تفاصيلها بشكل مثالي'
-      },
-      festivals: {
-        title: 'المهرجانات',
-        description: 'ننظم مهرجانات ثقافية وترفيهية وموسيقية تترك أثراً لا يُنسى لدى الجمهور'
-      },
-      production: {
-        title: 'الإنتاج الإبداعي',
-        description: 'نوفر حلول إنتاج متكاملة من التصميم والديكور إلى الإضاءة والصوتيات'
-      },
-      marketing: {
-        title: 'التسويق والترويج',
-        description: 'استراتيجيات تسويقية مبتكرة لضمان نجاح فعاليتك وتحقيق أهدافك'
-      },
-      consulting: {
-        title: 'الاستشارات',
-        description: 'نقدم استشارات متخصصة في التخطيط والتنفيذ لجميع أنواع الفعاليات'
+      subtitle: 'نقدم مجموعة متكاملة من الخدمات الاحترافية',
+      items: {
+        equipment: {
+          title: 'معدات الصوت والإضاءة',
+          desc: 'أحدث معدات الصوت والإضاءة والمسارح والشاشات العملاقة'
+        },
+        openings: {
+          title: 'حملات الافتتاح',
+          desc: 'إعداد حملات الافتتاح وتوزيع الجوائز'
+        },
+        characters: {
+          title: 'الشخصيات الكرتونية',
+          desc: 'تصميم وتصنيع الشخصيات الكرتونية'
+        },
+        events: {
+          title: 'إدارة الفعاليات',
+          desc: 'إدارة وتنظيم الفعاليات والمهرجانات وتوريد العروض العالمية'
+        },
+        exhibitions: {
+          title: 'تنظيم المعارض',
+          desc: 'التنظيم والتنفيذ الكامل للمعارض'
+        },
+        games: {
+          title: 'ألعاب الإثارة',
+          desc: 'ألعاب الإثارة والتحدي تستهدف شرائح عمرية مختلفة'
+        },
+        booths: {
+          title: 'تصميم البوثات',
+          desc: 'تصميم بوثات الفعاليات والمهرجانات بطريقة احترافية'
+        },
+        carnival: {
+          title: 'ألعاب الكرنفال',
+          desc: 'تصميم حديث يلبي احتياجات الزوار'
+        }
+      }
+    },
+    entertainment: {
+      title: 'العروض الترفيهية',
+      subtitle: 'تجارب استثنائية لا تُنسى',
+      items: {
+        lights: {
+          title: 'النور والظلال',
+          desc: 'حركة بصرية ممتعة تنقل الجمهور إلى عوالم من السحر والألوان باستخدام تقنية الأضواء السوداء'
+        },
+        pantomime: {
+          title: 'عروض البانتومايم',
+          desc: 'فن التمثيل الصامت بطريقة إيحائية غاية في الإتقان'
+        },
+        vr: {
+          title: 'الواقع الافتراضي',
+          desc: 'أحدث المعدات لألعاب الواقع الافتراضي المليئة بالمغامرات'
+        },
+        carnival: {
+          title: 'القافلات الكرنفالية',
+          desc: 'قوافل احترافية تضم عروض الفولكلور والشخصيات الكرتونية ولاعبي النار'
+        },
+        heritage: {
+          title: 'القرية التراثية',
+          desc: 'تجسيد المناطق التراثية للمملكة العربية السعودية'
+        },
+        circus: {
+          title: 'عرض السيرك المصغر',
+          desc: 'فقرات شيقة ومثيرة تعتمد على الابتكار البصري والحركات الرائعة'
+        },
+        facePainting: {
+          title: 'رسام المكياج',
+          desc: 'رسم الوجوه بطريقة احترافية ومبتكرة'
+        },
+        balloons: {
+          title: 'رسام البالونات',
+          desc: 'شخصيات مهرجة تصنع تصاميم مميزة من البالونات'
+        },
+        magic: {
+          title: 'عروض الماجيك',
+          desc: 'عروض سحرية مثيرة ومشوقة مع أفضل الساحرين'
+        }
+      }
+    },
+    production: {
+      title: 'الإنتاج والتجهيز',
+      subtitle: 'حلول متكاملة للإنتاج',
+      items: {
+        sound: {
+          title: 'أنظمة صوتية',
+          desc: 'تجهيز الأنظمة الصوتية والإضاءة والمسارح والتصوير'
+        },
+        stage: {
+          title: 'تجهيز المسرح',
+          desc: 'أحدث التجهيزات للمسارح والأنظمة الصوتية والإضاءة'
+        },
+        media: {
+          title: 'الإنتاج الإعلامي',
+          desc: 'تصميم وإنتاج الإعلانات التلفزيونية بفريق محترف'
+        }
       }
     },
     projects: {
-      title: 'مشاريعنا',
-      subtitle: 'نفخر بما أنجزناه',
-      viewProject: 'عرض المشروع',
-      allProjects: 'جميع المشاريع',
+      title: 'بعض من أعمالنا',
+      subtitle: 'مشاريع نفخر بها',
+      items: {
+        aramco: 'يوم الموظف - أرامكو',
+        eidFitr: 'عيد الفطر',
+        eidAdha: 'عيد الأضحى',
+        family: 'يوم عائلة ياسرف',
+        blackLight: 'عرض الضوء الأسود',
+        festival: 'مهرجان الصيف'
+      }
     },
-    gallery: {
-      title: 'معرض الصور',
-      subtitle: 'لحظات من إبداعاتنا',
-      viewAll: 'عرض الكل',
+    certificates: {
+      title: 'الشهادات والتراخيص',
+      subtitle: 'معتمدون ومرخصون',
+    },
+    partners: {
+      title: 'شركاء النجاح',
+      subtitle: 'نفخر بشراكتنا مع',
     },
     contact: {
       title: 'تواصل معنا',
-      subtitle: 'نحن هنا لمساعدتك',
-      name: 'الاسم',
+      subtitle: 'نسعد بتواصلكم',
+      phone: 'الهاتف',
       email: 'البريد الإلكتروني',
-      phone: 'رقم الهاتف',
-      message: 'رسالتك',
-      send: 'إرسال',
       address: 'العنوان',
-      addressText: 'المملكة العربية السعودية، الرياض',
-      followUs: 'تابعنا',
+      addressText: 'جدة، المملكة العربية السعودية',
     },
     footer: {
-      description: 'دار العقيلي - شريكك الموثوق في صناعة الفعاليات الاستثنائية',
+      description: 'شركة سعودية رائدة في مجال إدارة وتنظيم المعارض والفعاليات',
+      rights: 'جميع الحقوق محفوظة',
       quickLinks: 'روابط سريعة',
-      services: 'خدماتنا',
-      rights: '© 2024 دار العقيلي. جميع الحقوق محفوظة.',
     }
   },
   en: {
@@ -112,94 +186,168 @@ const translations: Record<Language, Translations> = {
       home: 'Home',
       about: 'About Us',
       services: 'Our Services',
-      projects: 'Our Projects',
-      gallery: 'Gallery',
+      projects: 'Our Work',
+      certificates: 'Certificates',
+      partners: 'Partners',
       contact: 'Contact Us',
     },
     hero: {
-      company: 'Dar Al-Aqeeli',
+      company: 'Dar Al-Akeeli',
+      crew: 'Crew',
       subtitle: 'For Exhibitions, Events & Festivals',
-      description: 'Creating exceptional and unforgettable experiences through organizing exhibitions, events and festivals with the highest standards of quality and professionalism',
-      cta: 'Discover Our Services',
+      description: 'Crew Company is one of Dar Al-Akeeli Group companies. A leading Saudi company in managing, organizing and equipping exhibitions and events in the Kingdom of Saudi Arabia',
+      cta: 'Discover More',
       cta2: 'Contact Us',
       stats: {
         events: '500+',
         eventsLabel: 'Events Organized',
-        clients: '200+',
+        clients: '300+',
         clientsLabel: 'Happy Clients',
-        years: '15+',
+        years: '4+',
         yearsLabel: 'Years of Experience',
-        awards: '30+',
-        awardsLabel: 'Awards & Recognition',
       }
     },
     about: {
       title: 'About Us',
-      subtitle: 'Pioneers in Event Management',
-      description: 'Dar Al-Aqeeli is a leading company in organizing exhibitions, events and festivals in the region. We have over 15 years of experience in the events industry, combining creativity and professionalism to deliver unique and unforgettable experiences.',
-      mission: 'Our Mission',
-      missionText: 'We strive to provide the best services in event and exhibition management, committed to the highest standards of quality and innovation',
+      subtitle: 'Leading Company in Events Industry',
+      description: 'Crew Company is one of Dar Al-Akeeli Group companies. A leading Saudi company in managing, organizing and equipping exhibitions and events in the Kingdom of Saudi Arabia.',
+      description2: 'We provide various event management services through highly qualified teams and expertise to achieve world-class quality standards.',
+      founded: 'Founded in 2020, led by a team of ambitious young professionals with sufficient experience to organize and manage creative entertainment events that achieve client goals.',
       vision: 'Our Vision',
-      visionText: 'To be the first and best choice for organizing exceptional events in the region and the Arab world',
-      values: 'Our Values',
-      valuesText: 'Professionalism, creativity, commitment, and excellence in everything we deliver',
+      visionText: 'To provide a range of solutions and services for managing and producing events for our clients in a professional and innovative way that leaves a lasting impact for years to come.',
+      values: 'Values',
+      valuesText: 'We strive to treat our clients with respect and integrity, combining honesty and business ethics in all aspects of our business performance.',
     },
     services: {
       title: 'Our Services',
-      subtitle: 'We offer a complete range of services',
-      exhibitions: {
-        title: 'Exhibition Organization',
-        description: 'We design and organize professional exhibitions of all types - commercial, artistic and industrial - to the highest international standards'
-      },
-      events: {
-        title: 'Event Management',
-        description: 'From major conferences to private events, we ensure your events are executed perfectly in every detail'
-      },
-      festivals: {
-        title: 'Festivals',
-        description: 'We organize cultural, entertainment and music festivals that leave an unforgettable impression on the audience'
-      },
-      production: {
-        title: 'Creative Production',
-        description: 'We provide comprehensive production solutions from design and decoration to lighting and sound'
-      },
-      marketing: {
-        title: 'Marketing & Promotion',
-        description: 'Innovative marketing strategies to ensure your event succeeds and achieves your goals'
-      },
-      consulting: {
-        title: 'Consulting',
-        description: 'We provide specialized consulting in planning and execution for all types of events'
+      subtitle: 'Complete Range of Professional Services',
+      items: {
+        equipment: {
+          title: 'Sound & Lighting Equipment',
+          desc: 'Latest sound, lighting, stage and giant screen equipment'
+        },
+        openings: {
+          title: 'Opening Campaigns',
+          desc: 'Preparing opening campaigns and prize distribution'
+        },
+        characters: {
+          title: 'Cartoon Characters',
+          desc: 'Design and manufacture of cartoon characters'
+        },
+        events: {
+          title: 'Event Management',
+          desc: 'Managing events, festivals and supplying international shows'
+        },
+        exhibitions: {
+          title: 'Exhibition Organization',
+          desc: 'Complete organization and execution of exhibitions'
+        },
+        games: {
+          title: 'Thrill Games',
+          desc: 'Exciting and challenging games targeting different age groups'
+        },
+        booths: {
+          title: 'Booth Design',
+          desc: 'Professional event and festival booth design'
+        },
+        carnival: {
+          title: 'Carnival Games',
+          desc: 'Modern design meeting visitor needs'
+        }
+      }
+    },
+    entertainment: {
+      title: 'Entertainment Shows',
+      subtitle: 'Exceptional Unforgettable Experiences',
+      items: {
+        lights: {
+          title: 'Light & Shadow',
+          desc: 'Visual spectacle transporting audiences to worlds of magic and colors using black light technology'
+        },
+        pantomime: {
+          title: 'Pantomime Shows',
+          desc: 'Silent acting art performed with perfect suggestive technique'
+        },
+        vr: {
+          title: 'Virtual Reality',
+          desc: 'Latest VR equipment full of adventures'
+        },
+        carnival: {
+          title: 'Carnival Caravans',
+          desc: 'Professional caravans featuring folklore, cartoon characters and fire performers'
+        },
+        heritage: {
+          title: 'Heritage Village',
+          desc: 'Embodying Saudi Arabia\'s heritage areas'
+        },
+        circus: {
+          title: 'Mini Circus Show',
+          desc: 'Exciting acts based on visual innovation and spectacular movements'
+        },
+        facePainting: {
+          title: 'Face Painting',
+          desc: 'Professional and innovative face painting'
+        },
+        balloons: {
+          title: 'Balloon Artist',
+          desc: 'Clown characters creating unique balloon designs'
+        },
+        magic: {
+          title: 'Magic Shows',
+          desc: 'Exciting magical shows with top magicians'
+        }
+      }
+    },
+    production: {
+      title: 'Production & Setup',
+      subtitle: 'Complete Production Solutions',
+      items: {
+        sound: {
+          title: 'Sound Systems',
+          desc: 'Setup of sound, lighting, stages and photography systems'
+        },
+        stage: {
+          title: 'Stage Setup',
+          desc: 'Latest equipment for stages, sound and lighting systems'
+        },
+        media: {
+          title: 'Media Production',
+          desc: 'Design and production of TV commercials with professional team'
+        }
       }
     },
     projects: {
-      title: 'Our Projects',
-      subtitle: 'Proud of what we have accomplished',
-      viewProject: 'View Project',
-      allProjects: 'All Projects',
+      title: 'Some of Our Work',
+      subtitle: 'Projects We\'re Proud Of',
+      items: {
+        aramco: 'Employee Day - Aramco',
+        eidFitr: 'Eid Al-Fitr',
+        eidAdha: 'Eid Al-Adha',
+        family: 'Yasref Family Day',
+        blackLight: 'Black Light Show',
+        festival: 'Summer Festival'
+      }
     },
-    gallery: {
-      title: 'Gallery',
-      subtitle: 'Moments from our creations',
-      viewAll: 'View All',
+    certificates: {
+      title: 'Certificates & Licenses',
+      subtitle: 'Certified & Licensed',
+    },
+    partners: {
+      title: 'Success Partners',
+      subtitle: 'Proud to Partner With',
     },
     contact: {
       title: 'Contact Us',
-      subtitle: 'We are here to help you',
-      name: 'Name',
+      subtitle: 'We\'d Love to Hear From You',
+      phone: 'Phone',
       email: 'Email',
-      phone: 'Phone Number',
-      message: 'Your Message',
-      send: 'Send',
       address: 'Address',
-      addressText: 'Saudi Arabia, Riyadh',
-      followUs: 'Follow Us',
+      addressText: 'Jeddah, Kingdom of Saudi Arabia',
     },
     footer: {
-      description: 'Dar Al-Aqeeli - Your trusted partner in exceptional event management',
+      description: 'A leading Saudi company in managing and organizing exhibitions and events',
+      rights: 'All Rights Reserved',
       quickLinks: 'Quick Links',
-      services: 'Our Services',
-      rights: '© 2024 Dar Al-Aqeeli. All rights reserved.',
     }
   }
 };
@@ -207,7 +355,7 @@ const translations: Record<Language, Translations> = {
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (section: string, key: string) => any;
+  t: (section: string, key: string) => string;
   dir: 'rtl' | 'ltr';
 }
 
@@ -234,8 +382,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   };
 
-  const t = (section: string, key: string): any => {
-    return translations[language]?.[section]?.[key] || key;
+  const t = (section: string, key: string): string => {
+    const keys = key.split('.');
+    let value: any = translations[language]?.[section];
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object') {
+        value = value[k];
+      } else {
+        return key;
+      }
+    }
+    
+    return typeof value === 'string' ? value : key;
   };
 
   const dir = language === 'ar' ? 'rtl' : 'ltr';

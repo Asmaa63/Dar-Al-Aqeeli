@@ -1,132 +1,130 @@
-// components/Navbar.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Menu, X, Globe } from 'lucide-react';
 
 export default function Navbar() {
   const { language, setLanguage, t, dir } = useLanguage();
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: t('navbar', 'home'), href: '#home' },
-    { name: t('navbar', 'about'), href: '#about' },
-    { name: t('navbar', 'services'), href: '#services' },
-    { name: t('navbar', 'projects'), href: '#projects' },
-    { name: t('navbar', 'gallery'), href: '#gallery' },
-    { name: t('navbar', 'contact'), href: '#contact' },
+  const navItems = [
+    { key: 'home', href: '#home' },
+    { key: 'about', href: '#about' },
+    { key: 'services', href: '#services' },
+    { key: 'projects', href: '#projects' },
+    { key: 'certificates', href: '#certificates' },
+    { key: 'partners', href: '#partners' },
+    { key: 'contact', href: '#contact' },
   ];
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'ar' ? 'en' : 'ar');
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
       dir={dir}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-black/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-20">
+
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <a href="#home" className="flex items-center space-x-2">
-              {/* <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">دع</span>
-              </div> */}
-              <div className={`${language === 'en' ? 'ml-3' : 'mr-3'}`}>
-                <h1 className={`text-xl font-bold ${scrolled ? 'text-gray-900' : 'text-white'}`}>
-                  {t('hero', 'company')}
-                </h1>
-                <p className={`text-xs ${scrolled ? 'text-gray-600' : 'text-white/90'}`}>
-                  {language === 'ar' ? 'للمعارض والفعاليات' : 'Events & Exhibitions'}
-                </p>
-              </div>
-            </a>
+          <div className="flex items-center">
+            <Image
+              src="/logo/Company Logo Akeeli.png"
+              alt="Company Logo"
+              width={140}
+              height={50}
+              priority
+            />
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-amber-500 ${
-                  scrolled ? 'text-gray-700' : 'text-white'
-                } ${language === 'ar' ? 'mr-8' : ''}`}
+          <div className="hidden lg:flex items-center gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.key}
+                onClick={() => scrollToSection(item.href)}
+                className="text-white hover:text-red-600 transition-colors duration-300 font-medium whitespace-nowrap"
               >
-                {link.name}
-              </a>
+                {t('navbar', item.key)}
+              </button>
             ))}
+          </div>
 
-            {/* Language Toggle */}
+          {/* Language Toggle - Desktop */}
+          <div className="hidden lg:flex items-center">
             <button
-              onClick={toggleLanguage}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-all duration-200 ${
-                scrolled
-                  ? 'border-gray-300 text-gray-700 hover:bg-gray-100'
-                  : 'border-white/30 text-white hover:bg-white/10'
-              } ${language === 'ar' ? 'mr-8' : ''}`}
+              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 font-medium"
             >
-              <Globe className="w-4 h-4" />
-              <span className={`text-sm font-medium ${language === 'ar' ? 'mr-2' : 'ml-2'}`}>
-                {language === 'ar' ? 'EN' : 'عربي'}
-              </span>
+              <Globe size={18} />
+              {language === 'ar' ? 'EN' : 'عربي'}
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
+          {/* Mobile Controls */}
+          <div className="lg:hidden flex items-center gap-3">
             <button
-              onClick={toggleLanguage}
-              className={`p-2 rounded-lg ${
-                scrolled ? 'text-gray-700' : 'text-white'
-              }`}
+              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+              className="flex items-center gap-1 px-3 py-1 bg-red-600 text-white rounded text-sm"
             >
-              <Globe className="w-5 h-5" />
+              <Globe size={16} />
+              {language === 'ar' ? 'EN' : 'عربي'}
             </button>
+
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-lg ${
-                scrolled ? 'text-gray-700' : 'text-white'
-              }`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white p-2"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-        }`}
-      >
-        <div className="px-4 pt-2 pb-6 space-y-2 bg-white shadow-lg">
-          {navLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="block px-4 py-3 text-gray-700 hover:bg-amber-50 hover:text-amber-600 rounded-lg transition-colors duration-200"
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-black/95 backdrop-blur-lg rounded-lg mb-4 overflow-hidden">
+            <div className="flex flex-col gap-2 p-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.key}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`text-white hover:text-red-600 transition-colors duration-300 py-2 font-medium ${
+                    dir === 'rtl' ? 'text-right' : 'text-left'
+                  }`}
+                >
+                  {t('navbar', item.key)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

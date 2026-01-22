@@ -1,14 +1,29 @@
 // app/layout.tsx
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { LanguageProvider } from '@/contexts/LanguageContext';
 import './globals.css';
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import { Cairo, Tajawal, Almarai } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const cairo = Cairo({ 
+  subsets: ['arabic', 'latin'],
+  weight: ['400', '600', '700', '900'],
+  variable: '--font-cairo'
+});
+
+const tajawal = Tajawal({ 
+  subsets: ['arabic', 'latin'],
+  weight: ['400', '500', '700', '800'],
+  variable: '--font-tajawal'
+});
+const almarai = Almarai({ 
+  subsets: ['arabic'],
+  weight: ['400', '700', '800'],
+  variable: '--font-almarai'
+});
 
 export const metadata: Metadata = {
-  title: 'TechMaster - Your Tech Solutions Partner',
-  description: 'We provide the best tech solutions for your business',
+  title: 'دار العقيلي | Crew - للمعارض والفعاليات والمهرجانات',
+  description: 'شركة سعودية رائدة في مجال إدارة وتنظيم وتجهيز المعارض والفعاليات في المملكة العربية السعودية',
 };
 
 export default function RootLayout({
@@ -17,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar">
-      <body className={inter.className}>
+    <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable} ${almarai.variable}`}>
+      <body className="font-cairo">
         <LanguageProvider>
           {children}
         </LanguageProvider>
