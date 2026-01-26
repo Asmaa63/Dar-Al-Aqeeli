@@ -46,33 +46,46 @@ export default function Navbar() {
   return (
     <nav
       dir={dir}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-gray-100' 
+          : 'bg-gradient-to-r from-gray-50 via-gray-100 to-gray-300 backdrop-blur-md'
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+      
+      <div className="container mx-auto px-4 relative">
+        <div className="flex items-center justify-between h-24">
 
           {/* Logo */}
           <div className="flex items-center">
-            <Image
-              src="/logo/Company Logo Akeeli.png"
-              alt="Company Logo"
-              width={140}
-              height={50}
-              priority
-            />
+            <div className="relative group">
+              <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400 to-blue-400 rounded-lg opacity-0 group-hover:opacity-20 blur transition duration-500" />
+              <Image
+                src="/logo/Company Logo Akeeli.png"
+                alt="Company Logo"
+                width={180}
+                height={65}
+                priority
+                className="relative drop-shadow-2xl"
+              />
+            </div>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
+          <div className="hidden lg:flex items-center gap-1">
+            {navItems.map((item, index) => (
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.href)}
-                className="text-white hover:text-red-600 transition-colors duration-300 font-medium whitespace-nowrap"
+                className="relative px-4 py-2 text-blue-800 font-semibold transition-all duration-300 group overflow-hidden"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                {t('navbar', item.key)}
+                <span className="relative z-10 group-hover:text-blue-900 transition-colors duration-300">
+                  {t('navbar', item.key)}
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/20 to-yellow-400/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent group-hover:w-full group-hover:left-0 transition-all duration-500" />
               </button>
             ))}
           </div>
@@ -81,10 +94,11 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center">
             <button
               onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 font-medium"
+              className="relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 rounded-xl font-bold hover:from-yellow-400 hover:to-yellow-500 transition-all duration-300 shadow-lg shadow-yellow-500/30 hover:shadow-yellow-400/50 hover:scale-105 overflow-hidden group"
             >
-              <Globe size={18} />
-              {language === 'ar' ? 'EN' : 'عربي'}
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              <Globe size={20} className="relative z-10 group-hover:rotate-180 transition-transform duration-500" />
+              <span className="relative z-10">{language === 'ar' ? 'EN' : 'عربي'}</span>
             </button>
           </div>
 
@@ -92,32 +106,36 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center gap-3">
             <button
               onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-              className="flex items-center gap-1 px-3 py-1 bg-red-600 text-white rounded text-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 rounded-lg font-bold shadow-lg shadow-yellow-500/30"
             >
-              <Globe size={16} />
+              <Globe size={18} />
               {language === 'ar' ? 'EN' : 'عربي'}
             </button>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white p-2"
+              className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-black/95 backdrop-blur-lg rounded-lg mb-4 overflow-hidden">
-            <div className="flex flex-col gap-2 p-4">
-              {navItems.map((item) => (
+          <div className="lg:hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 rounded-2xl mb-4 overflow-hidden shadow-2xl border border-yellow-400/20">
+            <div className="flex flex-col gap-1 p-4">
+              {navItems.map((item, index) => (
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href)}
-                  className={`text-white hover:text-red-600 transition-colors duration-300 py-2 font-medium ${
+                  className={`text-white hover:text-yellow-300 hover:bg-white/5 transition-all duration-300 py-3 px-4 font-semibold rounded-lg ${
                     dir === 'rtl' ? 'text-right' : 'text-left'
                   }`}
+                  style={{ 
+                    animationDelay: `${index * 50}ms`,
+                    animation: 'slideIn 0.3s ease-out forwards'
+                  }}
                 >
                   {t('navbar', item.key)}
                 </button>
@@ -126,6 +144,19 @@ export default function Navbar() {
           </div>
         )}
       </div>
+      
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
     </nav>
   );
 }

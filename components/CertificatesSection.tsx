@@ -1,4 +1,3 @@
-// components/CertificatesSection.tsx
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -78,134 +77,131 @@ export default function CertificatesSection() {
       id="certificates"
       ref={sectionRef}
       dir={dir}
-      className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
+      className="py-24 bg-gradient-to-br from-blue-50 via-white to-yellow-50 relative overflow-hidden"
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-red-600 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-black rounded-full blur-3xl animate-pulse delay-1000"></div>
+      {/* Background */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-yellow-400 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
-          {/* <div className="inline-flex items-center gap-2 bg-red-50 border border-red-100 rounded-full px-6 py-2 mb-6">
-            <Award className="w-5 h-5 text-red-600" />
-            <span className="text-red-600 font-semibold text-sm">
-              {language === 'ar' ? 'معتمدون ومرخصون' : 'Certified & Licensed'}
-            </span>
-          </div> */}
-
-          <h2 className="text-4xl md:text-6xl font-black mb-4">
-            <span className="bg-gradient-to-r from-black via-red-600 to-black bg-clip-text text-transparent">
+        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
+          <h2 className="text-5xl md:text-5xl  font-black mb-6">
+            <span className="bg-gradient-to-r from-blue-900 via-blue-600 to-blue-900 bg-clip-text text-transparent drop-shadow-lg">
               {t('certificates', 'title')}
             </span>
           </h2>
           
-          <div className="flex items-center justify-center gap-3 my-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
-            <div className="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
+          <div className="flex items-center justify-center gap-4 my-8">
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-blue-600 to-blue-600 rounded-full" />
+            <div className="w-4 h-4 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" />
+            <div className="w-4 h-4 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full animate-pulse shadow-lg shadow-blue-600/50" style={{ animationDelay: '0.3s' }} />
+            <div className="w-16 h-1 bg-gradient-to-l from-transparent via-blue-600 to-blue-600 rounded-full" />
           </div>
 
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-blue-800 max-w-3xl mx-auto font-semibold">
             {t('certificates', 'subtitle')}
           </p>
         </div>
 
         {/* Certificates Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {certificates.map((cert, index) => {
             const Icon = cert.icon;
             return (
               <div
                 key={index}
                 onClick={() => setSelectedCert(selectedCert === index ? null : index)}
-                className={`group cursor-pointer relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-700 ${
-                  selectedCert === index ? 'scale-105 shadow-2xl' : 'hover:-translate-y-2'
+                className={`group cursor-pointer relative transition-all duration-700 ${
+                  selectedCert === index ? 'scale-105' : 'hover:-translate-y-3'
                 } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                {/* Certificate Image - Portrait */}
-                <div className="relative h-80 overflow-hidden">
-                  <img
-                    src={cert.image}
-                    alt={cert.title}
-                    className={`w-full h-full object-cover transition-all duration-700 ${
-                      selectedCert === index ? 'scale-110 brightness-75' : 'group-hover:scale-110'
-                    }`}
-                  />
-                  
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/30 to-blue-600/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Card */}
+                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl border-2 border-transparent hover:border-yellow-400 transition-all duration-500">
+                  {/* Certificate Image */}
+                  <div className="relative h-96 overflow-hidden">
+                    <img
+                      src={cert.image}
+                      alt={cert.title}
+                      className={`w-full h-full object-cover transition-all duration-700 ${
+                        selectedCert === index ? 'scale-110 brightness-75' : 'group-hover:scale-110'
+                      }`}
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/95 via-blue-900/60 to-transparent" />
 
-                  {/* Icon Badge */}
-                  <div className="absolute top-4 right-4">
-                    <div className="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
-                      <Icon className="w-7 h-7 text-white" />
+                    {/* Icon Badge */}
+                    <div className="absolute top-6 right-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl flex items-center justify-center shadow-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
+                        <Icon className="w-8 h-8 text-blue-900" />
+                      </div>
+                    </div>
+
+                    {/* Year Badge */}
+                    <div className="absolute top-6 left-6">
+                      <div className="bg-white/20 backdrop-blur-md border-2 border-white/40 rounded-xl px-5 py-2">
+                        <span className="text-white font-black text-xl">{cert.year}</span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                      <h3 className="text-2xl font-black text-white mb-3 group-hover:text-yellow-300 transition-colors duration-300">
+                        {cert.title}
+                      </h3>
+                      <p className="text-white/90 font-semibold flex items-center gap-2">
+                        <CheckCircle className="w-5 h-5 text-yellow-400" />
+                        {cert.issuer}
+                      </p>
+                    </div>
+
+                    {/* Hover Lines */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-yellow-400 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right" />
+                  </div>
+
+                  {/* Verified Badge */}
+                  <div className={`absolute -bottom-4 left-1/2 -translate-x-1/2 transition-all duration-500 ${
+                    selectedCert === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}>
+                    <div className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-black shadow-2xl flex items-center gap-2">
+                      <CheckCircle className="w-5 h-5" />
+                      {language === 'ar' ? 'معتمد' : 'Verified'}
                     </div>
                   </div>
 
-                  Year Badge
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-lg px-4 py-2">
-                      <span className="text-white font-bold text-lg">{cert.year}</span>
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors duration-300">
-                      {cert.title}
-                    </h3>
-                    <p className="text-white/80 text-sm flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4" />
-                      {cert.issuer}
-                    </p>
-                  </div>
-
-                  {/* Hover Effect Lines */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                  <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-red-600 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right"></div>
+                  {/* Corner Decorations */}
+                  <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-yellow-400/0 group-hover:border-yellow-400 rounded-tl-3xl transition-all duration-500" />
+                  <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-blue-600/0 group-hover:border-blue-600 rounded-br-3xl transition-all duration-500" />
                 </div>
-
-                {/* Verified Badge */}
-                <div className={`absolute -bottom-3 left-1/2 -translate-x-1/2 transition-all duration-500 ${
-                  selectedCert === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}>
-                  <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4" />
-                    {language === 'ar' ? 'معتمد' : 'Verified'}
-                  </div>
-                </div>
-
-                {/* Border Animation */}
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-red-600 transition-all duration-500 rounded-2xl pointer-events-none"></div>
               </div>
             );
           })}
         </div>
 
         {/* Bottom Note */}
-        <div className={`text-center mt-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '600ms' }}>
-          <div className="inline-block bg-gradient-to-r from-red-50 via-white to-red-50 border border-red-100 rounded-2xl px-8 py-6">
-            <p className="text-gray-700 font-medium flex items-center gap-3 justify-center flex-wrap">
-              <Shield className="w-6 h-6 text-red-600" />
-              <span>
-                {language === 'ar' 
-                  ? 'جميع شهاداتنا معتمدة وسارية المفعول من الجهات الرسمية'
-                  : 'All our certificates are accredited and valid by official authorities'}
-              </span>
-            </p>
+        <div className={`text-center mt-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '600ms' }}>
+          <div className="inline-block bg-gradient-to-r from-blue-600 via-blue-800 to-blue-600 p-[3px] rounded-3xl shadow-2xl">
+            <div className="bg-white rounded-3xl px-10 py-6">
+              <p className="text-blue-900 font-bold text-lg flex items-center gap-4 justify-center flex-wrap">
+                <Shield className="w-8 h-8 text-yellow-500" />
+                <span>
+                  {language === 'ar' 
+                    ? 'جميع شهاداتنا معتمدة وسارية المفعول من الجهات الرسمية'
+                    : 'All our certificates are accredited and valid by official authorities'}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* <style jsx>{`
-        .delay-1000 {
-          animation-delay: 1s;
-        }
-      `}</style> */}
     </section>
   );
 }

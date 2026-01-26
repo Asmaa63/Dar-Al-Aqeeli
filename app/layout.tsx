@@ -1,6 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from 'next';
 import './globals.css';
+import './print.css';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { Cairo, Tajawal, Almarai } from 'next/font/google';
 

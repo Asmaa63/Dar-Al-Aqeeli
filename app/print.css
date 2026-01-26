@@ -1,0 +1,26 @@
+/* print.css */
+@media print {
+  header,
+  footer,
+  nav {
+    display: none;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+@media print {
+  section {
+    page-break-inside: avoid;
+  }
+}
+
+@media print {
+  .fixed {
+    position: static !important;
+  }
+}

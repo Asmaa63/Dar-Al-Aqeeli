@@ -151,3 +151,23 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+
+@media print {
+  html, body {
+    background: white !important;
+  }
+}
+
+@media print {
+  .min-h-screen,
+  .h-screen {
+    min-height: auto !important;
+    height: auto !important;
+  }
+}
+@media print {
+  .fixed {
+    position: static !important;
+  }
+}

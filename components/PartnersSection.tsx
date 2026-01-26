@@ -1,4 +1,3 @@
-// components/PartnersSection.tsx
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -28,7 +27,6 @@ export default function PartnersSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-scroll animation
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer || !isVisible) return;
@@ -48,7 +46,6 @@ export default function PartnersSection() {
     return () => clearInterval(intervalId);
   }, [isVisible]);
 
-  // شركات سعودية كبيرة
   const partners = [
     {
       name: 'Saudi Aramco',
@@ -70,29 +67,8 @@ export default function PartnersSection() {
       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Almarai_logo.svg/200px-Almarai_logo.svg.png',
       category: language === 'ar' ? 'غذاء' : 'Food'
     },
-    {
-      name: 'Saudi Airlines',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Saudia_Logo.svg/200px-Saudia_Logo.svg.png',
-      category: language === 'ar' ? 'طيران' : 'Aviation'
-    },
-    {
-      name: 'NCB',
-      logo: 'https://upload.wikimedia.org/wikipedia/ar/thumb/8/8a/Ncb_logo.svg/200px-Ncb_logo.svg.png',
-      category: language === 'ar' ? 'بنوك' : 'Banking'
-    },
-    {
-      name: 'Mobily',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Mobily_Logo.svg/200px-Mobily_Logo.svg.png',
-      category: language === 'ar' ? 'اتصالات' : 'Telecom'
-    },
-    {
-      name: 'Al Rajhi Bank',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Al_Rajhi_Bank_Logo.svg/200px-Al_Rajhi_Bank_Logo.svg.png',
-      category: language === 'ar' ? 'بنوك' : 'Banking'
-    },
   ];
 
-  // Duplicate for infinite scroll effect
   const allPartners = [...partners, ...partners];
 
   return (
@@ -100,98 +76,90 @@ export default function PartnersSection() {
       id="partners"
       ref={sectionRef}
       dir={dir}
-      className="py-20 bg-white relative overflow-hidden"
+      className="py-24 bg-gradient-to-br from-white via-yellow-50 to-blue-50 relative overflow-hidden"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #dc2626 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }}></div>
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-yellow-300 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
-          {/* <div className="inline-flex items-center gap-2 bg-red-50 border border-red-100 rounded-full px-6 py-2 mb-6">
-            <Handshake className="w-5 h-5 text-red-600" />
-            <span className="text-red-600 font-semibold text-sm">
-              {language === 'ar' ? 'شركاء النجاح' : 'Success Partners'}
-            </span>
-          </div> */}
-
-          <h2 className="text-4xl md:text-6xl font-black mb-4">
-            <span className="bg-gradient-to-r from-black via-red-600 to-black bg-clip-text text-transparent">
+        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
+          <h2 className="text-5xl md:text-5xl  font-black mb-6">
+            <span className="bg-gradient-to-r from-blue-900 via-blue-600 to-blue-900 bg-clip-text text-transparent drop-shadow-lg">
               {t('partners', 'title')}
             </span>
           </h2>
           
-          <div className="flex items-center justify-center gap-3 my-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
-            <div className="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
+          <div className="flex items-center justify-center gap-4 my-8">
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-blue-600 to-blue-600 rounded-full" />
+            <div className="w-4 h-4 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full animate-pulse shadow-lg shadow-yellow-400/50" />
+            <div className="w-4 h-4 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full animate-pulse shadow-lg shadow-blue-600/50" style={{ animationDelay: '0.3s' }} />
+            <div className="w-16 h-1 bg-gradient-to-l from-transparent via-blue-600 to-blue-600 rounded-full" />
           </div>
 
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-blue-800 max-w-3xl mx-auto font-semibold">
             {t('partners', 'subtitle')}
           </p>
         </div>
 
-        {/* Partners Grid - Static Display */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        {/* Partners Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
           {partners.map((partner, index) => (
             <div
               key={index}
-              className={`group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-gray-100 hover:border-red-600 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              className={`group relative transition-all duration-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              {/* Logo Container */}
-              <div className="relative h-20 flex items-center justify-center mb-4">
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110"
-                  onError={(e) => {
-                    // Fallback to text if image fails to load
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `<div class="text-2xl font-bold text-gray-800">${partner.name}</div>`;
-                    }
-                  }}
-                />
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/30 to-blue-600/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-2 border-transparent hover:border-yellow-400">
+                {/* Logo Container */}
+                <div className="relative h-24 flex items-center justify-center mb-6">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.innerHTML = `<div class="text-2xl font-bold text-blue-900">${partner.name}</div>`;
+                      }
+                    }}
+                  />
+                </div>
+
+                {/* Category Badge */}
+                <div className="text-center">
+                  <span className="inline-block bg-gradient-to-r from-blue-600 to-blue-800 text-white text-sm font-bold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                    {partner.category}
+                  </span>
+                </div>
+
+                {/* Corner Decorations */}
+                <div className="absolute top-0 right-0 w-12 h-12 border-t-4 border-r-4 border-yellow-400/0 group-hover:border-yellow-400 rounded-tr-3xl transition-all duration-500" />
+                <div className="absolute bottom-0 left-0 w-12 h-12 border-b-4 border-l-4 border-blue-600/0 group-hover:border-blue-600 rounded-bl-3xl transition-all duration-500" />
               </div>
-
-              {/* Category Badge */}
-              <div className="text-center">
-                <span className="inline-block bg-red-50 text-red-600 text-xs font-semibold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {partner.category}
-                </span>
-              </div>
-
-              {/* Hover Border Animation */}
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-red-600 transition-all duration-500 rounded-2xl pointer-events-none"></div>
-
-              {/* Corner Decoration */}
-              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-red-600/0 group-hover:border-red-600/50 rounded-tr-2xl transition-all duration-500"></div>
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-red-600/0 group-hover:border-red-600/50 rounded-bl-2xl transition-all duration-500"></div>
             </div>
           ))}
         </div>
 
-        {/* Infinite Scroll Section */}
-        <div className={`mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="bg-gradient-to-r from-gray-50 via-white to-gray-50 rounded-2xl p-8 border-2 border-gray-100 overflow-hidden">
+        {/* Infinite Scroll */}
+        <div className={`mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="bg-gradient-to-r from-blue-100 via-white to-yellow-100 rounded-3xl p-10 border-2 border-blue-200 overflow-hidden shadow-xl">
             <div 
               ref={scrollRef}
-              className="flex gap-12 overflow-hidden"
+              className="flex gap-16 overflow-hidden"
               style={{ scrollBehavior: 'auto' }}
             >
               {allPartners.map((partner, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-40 h-20 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-4 flex items-center justify-center group border border-gray-100"
+                  className="flex-shrink-0 w-48 h-24 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 flex items-center justify-center group border-2 border-transparent hover:border-yellow-400"
                 >
                   <img
                     src={partner.logo}
@@ -202,7 +170,7 @@ export default function PartnersSection() {
                       target.style.display = 'none';
                       const parent = target.parentElement;
                       if (parent) {
-                        parent.innerHTML = `<div class="text-sm font-bold text-gray-800 text-center">${partner.name}</div>`;
+                        parent.innerHTML = `<div class="text-sm font-bold text-blue-900 text-center">${partner.name}</div>`;
                       }
                     }}
                   />
@@ -213,43 +181,52 @@ export default function PartnersSection() {
         </div>
 
         {/* Stats Section */}
-        <div className={`grid md:grid-cols-3 gap-8 mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '800ms' }}>
-          <div className="text-center bg-gradient-to-br from-red-50 to-white rounded-2xl p-8 border border-red-100">
-            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Building2 className="w-8 h-8 text-white" />
-            </div>
-            <div className="text-4xl font-bold text-black mb-2">200+</div>
-            <div className="text-gray-600 font-medium">
-              {language === 'ar' ? 'شريك استراتيجي' : 'Strategic Partners'}
-            </div>
-          </div>
-
-          <div className="text-center bg-gradient-to-br from-black to-gray-800 rounded-2xl p-8 text-white">
-            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Sparkles className="w-8 h-8 text-white" />
-            </div>
-            <div className="text-4xl font-bold mb-2">500+</div>
-            <div className="text-gray-200 font-medium">
-              {language === 'ar' ? 'مشروع مشترك' : 'Joint Projects'}
+        <div className={`grid md:grid-cols-3 gap-10 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '800ms' }}>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl blur opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
+            <div className="relative text-center bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div className="w-20 h-20 bg-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                <Building2 className="w-10 h-10 text-blue-900" />
+              </div>
+              <div className="text-5xl font-black text-white mb-3">200+</div>
+              <div className="text-blue-100 font-semibold text-lg">
+                {language === 'ar' ? 'شريك استراتيجي' : 'Strategic Partners'}
+              </div>
             </div>
           </div>
 
-          <div className="text-center bg-gradient-to-br from-red-50 to-white rounded-2xl p-8 border border-red-100">
-            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Handshake className="w-8 h-8 text-white" />
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-3xl blur opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
+            <div className="relative text-center bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div className="w-20 h-20 bg-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                <Sparkles className="w-10 h-10 text-yellow-400" />
+              </div>
+              <div className="text-5xl font-black text-blue-900 mb-3">500+</div>
+              <div className="text-blue-900 font-bold text-lg">
+                {language === 'ar' ? 'مشروع مشترك' : 'Joint Projects'}
+              </div>
             </div>
-            <div className="text-4xl font-bold text-black mb-2">15+</div>
-            <div className="text-gray-600 font-medium">
-              {language === 'ar' ? 'سنة من الشراكات' : 'Years of Partnerships'}
+          </div>
+
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl blur opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
+            <div className="relative text-center bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 rounded-3xl p-6 shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div className="w-20 h-20 bg-yellow-400 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                <Handshake className="w-10 h-10 text-blue-900" />
+              </div>
+              <div className="text-5xl font-black text-white mb-3">15+</div>
+              <div className="text-blue-100 font-semibold text-lg">
+                {language === 'ar' ? 'سنة من الشراكات' : 'Years of Partnerships'}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Note */}
         <div className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '1000ms' }}>
-          <div className="inline-block bg-gradient-to-r from-black via-red-600 to-black p-[2px] rounded-2xl">
-            <div className="bg-white rounded-2xl px-8 py-4">
-              <p className="text-gray-700 font-medium">
+          <div className="inline-block bg-gradient-to-r from-blue-600 via-blue-800 to-blue-600 p-[3px] rounded-3xl shadow-2xl">
+            <div className="bg-white rounded-3xl px-10 py-6">
+              <p className="text-blue-900 font-bold text-lg">
                 {language === 'ar' 
                   ? 'وغيرهم الكثير من الشركات والجهات الرائدة في المملكة والعالم'
                   : 'And many more leading companies and organizations in the Kingdom and worldwide'}
