@@ -103,22 +103,24 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Controls */}
-          <div className="lg:hidden flex items-center gap-3">
-            <button
-              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 rounded-lg font-bold shadow-lg shadow-yellow-500/30"
-            >
-              <Globe size={18} />
-              {language === 'ar' ? 'EN' : 'عربي'}
-            </button>
+          {/* Mobile Controls */}
+<div className="lg:hidden flex items-center gap-3">
+  <button
+    onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 rounded-lg font-bold shadow-lg shadow-yellow-500/30"
+  >
+    <Globe size={18} />
+    {language === 'ar' ? 'EN' : 'عربي'}
+  </button>
 
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
-            >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
+  {/* هنا التعديل: تم تغيير text-white إلى text-blue-800 */}
+  <button
+    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+    className="text-blue-800 p-2 hover:bg-blue-50 rounded-lg transition-colors"
+  >
+    {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+  </button>
+</div>
         </div>
 
         {/* Mobile Menu */}
